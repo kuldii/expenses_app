@@ -18,9 +18,24 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('Expenses App'),
           centerTitle: true,
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.add,
+              ),
+              onPressed: () {},
+            ),
+          ],
         ),
         body: Center(
           child: Text('Hello Wolrd !'),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(
+            Icons.add,
+          ),
         ),
       ),
     );

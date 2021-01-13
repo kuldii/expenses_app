@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart'; //menggunakan foundation karena lebih enteng dari material.dart
 
 class Transaction {
   final String id;

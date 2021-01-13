@@ -26,9 +26,16 @@ class _ListTransactionsState extends State<ListTransactions> {
                   horizontal: 10,
                   vertical: 5,
                 ),
-                color: Colors.amber,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(7),
+                ),
                 child: Text(
-                  "\$ " + value.amount.toStringAsFixed(2),
+                  "\$ " + value.amount.toStringAsPrecision(4),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
                 ),
               ),
               // detail

@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Column(
+      body: ListView(
         children: [
           ChartWidget(),
           NewTransaction(),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../widgets/listtransaction.dart';
+import '../widgets/newtransaction.dart';
+import '../widgets/chart.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -10,8 +13,12 @@ class HomePage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text("Hello WOrld"),
+      body: Column(
+        children: [
+          ChartWidget(),
+          NewTransaction(),
+          ListTransactions(),
+        ],
       ),
     );
   }

@@ -39,13 +39,7 @@ class HomePage extends StatelessWidget {
         children: [
           ChartWidget(),
           NewTransaction(),
-          ListTransactions(),
-          // sementara list disini buat bisa pake dataTransactions
-          Column(
-            children: dataTransaction.map((value) {
-              return Text(value.title);
-            }).toList(),
-          )
+          ListTransactions(dataTransaction),
         ],
       ),
     );

@@ -1,6 +1,8 @@
 class Transaction {
-  final String title;
-  final double amount;
+  String id;
+  String title;
+  double amount;
+  DateTime date;
 
-  Transaction({this.title, this.amount});
+  Transaction({this.id, this.title, this.amount, this.date});
 }

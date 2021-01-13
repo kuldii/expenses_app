@@ -16,6 +16,10 @@ class _NewTransactionState extends State<NewTransaction> {
 
     print(titleController.text);
     print(amountController.text);
+
+    titleController.clear();
+    amountController.clear();
+    setState(() {});
   }
 
   @override
@@ -41,6 +45,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 labelText: "Amount",
               ),
               textInputAction: TextInputAction.done,
+              onEditingComplete: addTransaction,
             ),
             FlatButton(
               onPressed: addTransaction,

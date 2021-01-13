@@ -1,15 +1,20 @@
-import 'package:expenses_app/models/transaction.dart';
+import '../models/transaction.dart';
 import 'package:flutter/material.dart';
 
-class ListTransactions extends StatelessWidget {
+class ListTransactions extends StatefulWidget {
   final List<Transaction> _dataTransaction;
 
   ListTransactions(this._dataTransaction);
 
   @override
+  _ListTransactionsState createState() => _ListTransactionsState();
+}
+
+class _ListTransactionsState extends State<ListTransactions> {
+  @override
   Widget build(BuildContext context) {
     return Column(
-      children: _dataTransaction.map((value) {
+      children: widget._dataTransaction.map((value) {
         return Card(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

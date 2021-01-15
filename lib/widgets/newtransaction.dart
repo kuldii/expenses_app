@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import '../models/transaction.dart';
 
 class NewTransaction extends StatefulWidget {
+  final List<Transaction> _dataTransaction;
+
+  NewTransaction(this._dataTransaction);
+
   @override
   _NewTransactionState createState() => _NewTransactionState();
 }
@@ -17,9 +22,18 @@ class _NewTransactionState extends State<NewTransaction> {
     print(titleController.text);
     print(amountController.text);
 
+    setState(() {
+      widget._dataTransaction.add(
+        Transaction(
+          id: DateTime.now().toString(),
+          title: titleController.text,
+          amount: double.parse(amountController.text),
+          date: DateTime.now(),
+        ),
+      );
+    });
     titleController.clear();
     amountController.clear();
-    setState(() {});
   }
 
   @override

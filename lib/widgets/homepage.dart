@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
       body: ListView(
         children: [
           ChartWidget(),
-          NewTransaction(),
+          NewTransaction(dataTransaction),
           ListTransactions(dataTransaction),
         ],
       ),

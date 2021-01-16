@@ -26,6 +26,17 @@ class HomePage extends StatelessWidget {
     ),
   ];
 
+void addNewTx(String titleTx, double amountTx){
+ dataTransacrion.add(
+ Transaction(
+id: DateTime.now().toString(),
+title: titleTx,
+amount: amountTx,
+date: DateTime.now(),
+)
+);
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

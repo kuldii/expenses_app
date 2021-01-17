@@ -9,19 +9,19 @@ class NewTransaction extends StatelessWidget {
   final TextEditingController amountController = TextEditingController();
 
   void addTransaction() {
-    if (titleController.text.isEmpty || amountController.text.isEmpty) {
-      titleController.clear();
-      amountController.clear();
-      return print("Data tidak lengkap!");
+    final enterTitle = titleController.text;
+    if (enterTitle.isEmpty) {
+      return print("Tidak ada title!");
     }
-
-    print(titleController.text);
-    print(amountController.text);
-
-    addTx(titleController.text, double.parse(amountController.text));
-
-    titleController.clear();
-    amountController.clear();
+    if (amountController.text.isNotEmpty) {
+      final enterAmount = double.parse(amountController.text);
+      if (enterAmount < 0.00) {
+        return print("Nilai amount harus lebih dari 0 !");
+      }
+      addTx(enterTitle, enterAmount);
+    } else {
+      return print("Tidak ada amount!");
+    }
   }
 
   @override
@@ -40,6 +40,7 @@ class NewTransaction extends StatelessWidget {
                 labelText: "Title",
               ),
               textInputAction: TextInputAction.next,
+              onSubmitted: (_) => addTransaction(),
             ),
             TextField(
               controller: amountController,
@@ -48,7 +49,7 @@ class NewTransaction extends StatelessWidget {
                 labelText: "Amount",
               ),
               textInputAction: TextInputAction.done,
-              onEditingComplete: addTransaction,
+              onSubmitted: (_) => addTransaction(),
             ),
             FlatButton(
               onPressed: addTransaction,

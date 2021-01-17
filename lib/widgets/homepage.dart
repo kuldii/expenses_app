@@ -23,6 +23,12 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void deleteTx(String idTx) {
+    setState(() {
+      dataTransaction.removeWhere((element) => element.id == idTx);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +42,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           ChartWidget(),
           NewTransaction(addNewTx),
-          ListTransactions(dataTransaction),
+          ListTransactions(dataTransaction, deleteTx),
         ],
       ),
     );

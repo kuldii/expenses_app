@@ -4,8 +4,9 @@ import 'package:intl/intl.dart';
 
 class ListTransactions extends StatefulWidget {
   final List<Transaction> _dataTransaction;
+  final Function deleteTx;
 
-  ListTransactions(this._dataTransaction);
+  ListTransactions(this._dataTransaction, this.deleteTx);
 
   @override
   _ListTransactionsState createState() => _ListTransactionsState();
@@ -66,7 +67,7 @@ class _ListTransactionsState extends State<ListTransactions> {
                     Icons.delete,
                   ),
                   onPressed: () {
-                    print(value.id);
+                    widget.deleteTx(value.id);
                   },
                 ),
               ],

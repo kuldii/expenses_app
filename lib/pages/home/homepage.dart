@@ -1,8 +1,8 @@
+import 'package:expenses_app/models/transaction.dart';
+import 'package:expenses_app/pages/home/components/chart.dart';
+import 'package:expenses_app/pages/home/components/listtransaction.dart';
+import 'package:expenses_app/pages/home/components/newtransaction.dart';
 import 'package:flutter/material.dart';
-import '../models/transaction.dart';
-import '../widgets/listtransaction.dart';
-import '../widgets/newtransaction.dart';
-import '../widgets/chart.dart';
 
 class HomePage extends StatefulWidget {
   @override

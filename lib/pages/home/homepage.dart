@@ -10,7 +10,38 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Transaction> dataTransaction = [];
+  final List<Transaction> dataTransaction = [
+    Transaction(
+      id: DateTime.now().toString(),
+      title: "New Shoes",
+      amount: 10.99,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: "New Boot",
+      amount: 10.99,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: "New Bag",
+      amount: 10.99,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: "New Tas",
+      amount: 10.99,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: "New Sprit",
+      amount: 10.99,
+      date: DateTime.now(),
+    ),
+  ];
 
   void addNewTx(String titleTx, double amountTx) {
     setState(() {
@@ -44,7 +75,10 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              ChartWidget(),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.2,
+                child: ChartWidget(),
+              ),
               NewTransaction(addNewTx),
               ListTransactions(dataTransaction, deleteTx),
             ],

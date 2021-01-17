@@ -15,66 +15,69 @@ class ListTransactions extends StatefulWidget {
 class _ListTransactionsState extends State<ListTransactions> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: widget._dataTransaction.map((value) {
-        return Card(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // amount
-                Container(
-                  margin: EdgeInsets.fromLTRB(20, 5, 0, 5),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 5,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(7),
-                  ),
-                  child: Text(
-                    "\$ " + value.amount.toStringAsPrecision(4),
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.3,
+      child: ListView(
+        children: widget._dataTransaction.map((value) {
+          return Card(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // amount
+                  Container(
+                    margin: EdgeInsets.fromLTRB(20, 5, 0, 5),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 5,
                     ),
-                  ),
-                ),
-                // detail
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      value.title,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                    child: Text(
+                      "\$ " + value.amount.toStringAsPrecision(4),
                       style: TextStyle(
+                        color: Colors.white,
                         fontSize: 16,
-                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
-                      DateFormat().format(value.date),
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-                // delete
-                IconButton(
-                  icon: Icon(
-                    Icons.delete,
                   ),
-                  onPressed: () {
-                    widget.deleteTx(value.id);
-                  },
-                ),
-              ],
+                  // detail
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        value.title,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        DateFormat().format(value.date),
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                  // delete
+                  IconButton(
+                    icon: Icon(
+                      Icons.delete,
+                    ),
+                    onPressed: () {
+                      widget.deleteTx(value.id);
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-        );
-      }).toList(),
+          );
+        }).toList(),
+      ),
     );
   }
 }

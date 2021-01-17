@@ -1,37 +1,25 @@
 import 'package:flutter/material.dart';
-import '../models/transaction.dart';
 
-class NewTransaction extends StatefulWidget {
-  final List<Transaction> _dataTransaction;
+class NewTransaction extends StatelessWidget {
+  final Function addTx;
 
-  NewTransaction(this._dataTransaction);
+  NewTransaction(this.addTx);
 
-  @override
-  _NewTransactionState createState() => _NewTransactionState();
-}
-
-class _NewTransactionState extends State<NewTransaction> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
 
   void addTransaction() {
     if (titleController.text.isEmpty || amountController.text.isEmpty) {
+      titleController.clear();
+      amountController.clear();
       return print("Data tidak lengkap!");
     }
 
     print(titleController.text);
     print(amountController.text);
 
-    setState(() {
-      widget._dataTransaction.add(
-        Transaction(
-          id: DateTime.now().toString(),
-          title: titleController.text,
-          amount: double.parse(amountController.text),
-          date: DateTime.now(),
-        ),
-      );
-    });
+    addTx(titleController.text, double.parse(amountController.text));
+
     titleController.clear();
     amountController.clear();
   }

@@ -65,7 +65,9 @@ class _ListTransactionsState extends State<ListTransactions> {
                   icon: Icon(
                     Icons.delete,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    print(value.id);
+                  },
                 ),
               ],
             ),

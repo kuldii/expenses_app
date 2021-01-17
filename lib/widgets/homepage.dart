@@ -4,38 +4,24 @@ import '../widgets/listtransaction.dart';
 import '../widgets/newtransaction.dart';
 import '../widgets/chart.dart';
 
-class HomePage extends StatelessWidget {
-  final List<Transaction> dataTransaction = [
-    Transaction(
-      id: "tx1",
-      title: "Kopi",
-      amount: 1.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "tx2",
-      title: "Gula",
-      amount: 2.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "tx3",
-      title: "Teh",
-      amount: 1.99,
-      date: DateTime.now(),
-    ),
-  ];
-
-void addNewTx(String titleTx, double amountTx){
- dataTransacrion.add(
- Transaction(
-id: DateTime.now().toString(),
-title: titleTx,
-amount: amountTx,
-date: DateTime.now(),
-)
-);
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
 }
+
+class _HomePageState extends State<HomePage> {
+  final List<Transaction> dataTransaction = [];
+
+  void addNewTx(String titleTx, double amountTx) {
+    setState(() {
+      dataTransaction.add(Transaction(
+        id: DateTime.now().toString(),
+        title: titleTx,
+        amount: amountTx,
+        date: DateTime.now(),
+      ));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +35,7 @@ date: DateTime.now(),
       body: ListView(
         children: [
           ChartWidget(),
-          NewTransaction(dataTransaction),
+          NewTransaction(addNewTx),
           ListTransactions(dataTransaction),
         ],
       ),

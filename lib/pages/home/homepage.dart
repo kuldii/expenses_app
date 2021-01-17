@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
-                height: MediaQuery.of(context).size.height * 0.2,
+                height: 200,
                 child: ChartWidget(),
               ),
               NewTransaction(addNewTx),

@@ -16,7 +16,7 @@ class _ListTransactionsState extends State<ListTransactions> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.3,
+      height: MediaQuery.of(context).size.height * 0.5,
       child: ListView(
         children: widget._dataTransaction.map((value) {
           return Card(

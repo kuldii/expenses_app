@@ -40,6 +40,7 @@ class NewTransaction extends StatelessWidget {
                 labelText: "Title",
               ),
               textInputAction: TextInputAction.next,
+              maxLength: 20,
               onSubmitted: (_) => addTransaction(),
             ),
             TextField(

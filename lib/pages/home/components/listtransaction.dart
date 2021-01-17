@@ -25,26 +25,14 @@ class _ListTransactionsState extends State<ListTransactions> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // amount
-                  Container(
-                    margin: EdgeInsets.fromLTRB(20, 5, 0, 5),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 5,
+                  // delete
+                  IconButton(
+                    icon: Icon(
+                      Icons.delete,
                     ),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(7),
-                    ),
-                    child: Text(
-                      "\$ " +
-                          widget._dataTransaction[idx].amount
-                              .toStringAsPrecision(4),
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
-                    ),
+                    onPressed: () {
+                      widget.deleteTx(widget._dataTransaction[idx].id);
+                    },
                   ),
                   // detail
                   Column(
@@ -65,14 +53,26 @@ class _ListTransactionsState extends State<ListTransactions> {
                       ),
                     ],
                   ),
-                  // delete
-                  IconButton(
-                    icon: Icon(
-                      Icons.delete,
+                  // amount
+                  Container(
+                    margin: EdgeInsets.fromLTRB(20, 5, 0, 5),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 5,
                     ),
-                    onPressed: () {
-                      widget.deleteTx(widget._dataTransaction[idx].id);
-                    },
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                    child: Text(
+                      "\$ " +
+                          widget._dataTransaction[idx].amount
+                              .toStringAsPrecision(4),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
                 ],
               ),

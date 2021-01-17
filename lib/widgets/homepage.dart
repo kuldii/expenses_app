@@ -38,12 +38,18 @@ class _HomePageState extends State<HomePage> {
         ),
         centerTitle: true,
       ),
-      body: ListView(
-        children: [
-          ChartWidget(),
-          NewTransaction(addNewTx),
-          ListTransactions(dataTransaction, deleteTx),
-        ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ChartWidget(),
+              NewTransaction(addNewTx),
+              ListTransactions(dataTransaction, deleteTx),
+            ],
+          ),
+        ),
       ),
     );
   }

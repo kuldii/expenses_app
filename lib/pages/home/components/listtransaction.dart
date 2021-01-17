@@ -17,8 +17,8 @@ class _ListTransactionsState extends State<ListTransactions> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.5,
-      child: ListView(
-        children: widget._dataTransaction.map((value) {
+      child: ListView.builder(
+        itemBuilder: (ctx, idx) {
           return Card(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -37,7 +37,9 @@ class _ListTransactionsState extends State<ListTransactions> {
                       borderRadius: BorderRadius.circular(7),
                     ),
                     child: Text(
-                      "\$ " + value.amount.toStringAsPrecision(4),
+                      "\$ " +
+                          widget._dataTransaction[idx].amount
+                              .toStringAsPrecision(4),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -49,14 +51,14 @@ class _ListTransactionsState extends State<ListTransactions> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        value.title,
+                        widget._dataTransaction[idx].title,
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        DateFormat().format(value.date),
+                        DateFormat().format(widget._dataTransaction[idx].date),
                         style: TextStyle(
                           color: Colors.grey,
                         ),
@@ -69,14 +71,15 @@ class _ListTransactionsState extends State<ListTransactions> {
                       Icons.delete,
                     ),
                     onPressed: () {
-                      widget.deleteTx(value.id);
+                      widget.deleteTx(widget._dataTransaction[idx].id);
                     },
                   ),
                 ],
               ),
             ),
           );
-        }).toList(),
+        },
+        itemCount: widget._dataTransaction.length,
       ),
     );
   }

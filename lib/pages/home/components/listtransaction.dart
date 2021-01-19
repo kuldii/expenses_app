@@ -25,34 +25,6 @@ class _ListTransactionsState extends State<ListTransactions> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // delete
-                  IconButton(
-                    icon: Icon(
-                      Icons.delete,
-                    ),
-                    onPressed: () {
-                      widget.deleteTx(widget._dataTransaction[idx].id);
-                    },
-                  ),
-                  // detail
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget._dataTransaction[idx].title,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        DateFormat().format(widget._dataTransaction[idx].date),
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
                   // amount
                   Container(
                     margin: EdgeInsets.fromLTRB(20, 5, 0, 5),
@@ -73,6 +45,35 @@ class _ListTransactionsState extends State<ListTransactions> {
                         fontSize: 16,
                       ),
                     ),
+                  ),
+
+                  // detail
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget._dataTransaction[idx].title,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        DateFormat().format(widget._dataTransaction[idx].date),
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                  // delete
+                  IconButton(
+                    icon: Icon(
+                      Icons.delete,
+                    ),
+                    onPressed: () {
+                      widget.deleteTx(widget._dataTransaction[idx].id);
+                    },
                   ),
                 ],
               ),

@@ -10,7 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Transaction> dataTransaction = [
+  final List<Transaction> _dataTransaction = [
     Transaction(
       id: DateTime.now().toString(),
       title: "New Shoes",
@@ -43,9 +43,9 @@ class _HomePageState extends State<HomePage> {
     ),
   ];
 
-  void addNewTx(String titleTx, double amountTx) {
+  void _addNewTx(String titleTx, double amountTx) {
     setState(() {
-      dataTransaction.add(Transaction(
+      _dataTransaction.add(Transaction(
         id: DateTime.now().toString(),
         title: titleTx,
         amount: amountTx,
@@ -54,9 +54,9 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void deleteTx(String idTx) {
+  void _deleteTx(String idTx) {
     setState(() {
-      dataTransaction.removeWhere((element) => element.id == idTx);
+      _dataTransaction.removeWhere((element) => element.id == idTx);
     });
   }
 
@@ -79,14 +79,20 @@ class _HomePageState extends State<HomePage> {
                 height: 200,
                 child: ChartWidget(),
               ),
-              NewTransaction(addNewTx),
-              ListTransactions(dataTransaction, deleteTx),
+              ListTransactions(_dataTransaction, _deleteTx),
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (_) {
+              return NewTransaction(_addNewTx);
+            },
+          );
+        },
         child: Icon(
           Icons.add,
         ),

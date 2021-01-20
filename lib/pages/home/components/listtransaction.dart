@@ -15,79 +15,108 @@ class ListTransactions extends StatefulWidget {
 class _ListTransactionsState extends State<ListTransactions> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Container(
-        margin: EdgeInsets.all(10),
-        height: MediaQuery.of(context).size.height * 0.5,
-        child: ListView.builder(
-          itemBuilder: (ctx, idx) {
-            return Card(
-              elevation: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // amount
-                    Container(
-                      margin: EdgeInsets.fromLTRB(20, 5, 0, 5),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 5,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(7),
-                      ),
-                      child: Text(
-                        "\$ " +
-                            widget._dataTransaction[idx].amount
-                                .toStringAsPrecision(4),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                      ),
+    return (widget._dataTransaction.isEmpty)
+        ? Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "There is no data.",
+                    style: TextStyle(
+                      fontSize: 26,
                     ),
-
-                    // detail
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget._dataTransaction[idx].title,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          DateFormat()
-                              .format(widget._dataTransaction[idx].date),
-                          style: TextStyle(
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 150,
+                    child: Image.asset(
+                      "assets/images/nodata.png",
+                      fit: BoxFit.cover,
                     ),
-                    // delete
-                    IconButton(
-                      icon: Icon(
-                        Icons.delete,
-                      ),
-                      onPressed: () {
-                        widget.deleteTx(widget._dataTransaction[idx].id);
-                      },
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            );
-          },
-          itemCount: widget._dataTransaction.length,
-        ),
-      ),
-    );
+            ),
+          )
+        : Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: ListView.builder(
+                itemBuilder: (ctx, idx) {
+                  return Card(
+                    elevation: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // amount
+                          Container(
+                            margin: EdgeInsets.fromLTRB(20, 5, 0, 5),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 5,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColor,
+                              borderRadius: BorderRadius.circular(7),
+                            ),
+                            child: Text(
+                              "\$ " +
+                                  widget._dataTransaction[idx].amount
+                                      .toStringAsPrecision(4),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+
+                          // detail
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget._dataTransaction[idx].title,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                DateFormat()
+                                    .format(widget._dataTransaction[idx].date),
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                          // delete
+                          IconButton(
+                            icon: Icon(
+                              Icons.delete,
+                            ),
+                            onPressed: () {
+                              widget.deleteTx(widget._dataTransaction[idx].id);
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                itemCount: widget._dataTransaction.length,
+              ),
+            ),
+          );
   }
 }

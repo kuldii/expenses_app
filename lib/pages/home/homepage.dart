@@ -85,14 +85,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (_) {
-              return NewTransaction(_addNewTx);
-            },
-          );
-        },
+        onPressed: () => showModalBottomSheet(
+          context: context,
+          builder: (_) {
+            return NewTransaction(_addNewTx);
+          },
+        ),
         child: Icon(
           Icons.add,
         ),

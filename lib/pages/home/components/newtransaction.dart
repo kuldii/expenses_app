@@ -33,41 +33,38 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Container(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            TextField(
-              controller: titleController,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                labelText: "Title",
-              ),
-              textInputAction: TextInputAction.next,
-              maxLength: 20,
-              onSubmitted: (_) => addTransaction(),
+    return Container(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          TextField(
+            controller: titleController,
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(
+              labelText: "Title",
             ),
-            TextField(
-              controller: amountController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: "Amount",
-              ),
-              textInputAction: TextInputAction.done,
-              onSubmitted: (_) => addTransaction(),
+            textInputAction: TextInputAction.next,
+            maxLength: 20,
+            onSubmitted: (_) => addTransaction(),
+          ),
+          TextField(
+            controller: amountController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              labelText: "Amount",
             ),
-            FlatButton(
-              onPressed: addTransaction,
-              child: Text(
-                "Add Transaction",
-                style: TextStyle(color: Theme.of(context).primaryColor),
-              ),
+            textInputAction: TextInputAction.done,
+            onSubmitted: (_) => addTransaction(),
+          ),
+          FlatButton(
+            onPressed: addTransaction,
+            child: Text(
+              "Add Transaction",
+              style: TextStyle(color: Theme.of(context).primaryColor),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

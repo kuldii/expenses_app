@@ -12,6 +12,9 @@ class MyApp extends StatelessWidget {
       title: "Expenses Apps",
       debugShowCheckedModeBanner: false,
       home: HomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+      ),
     );
   }
 }

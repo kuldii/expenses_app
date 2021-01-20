@@ -20,7 +20,6 @@ class _ListTransactionsState extends State<ListTransactions> {
             elevation: 5,
             child: Container(
               padding: EdgeInsets.all(10),
-              height: MediaQuery.of(context).size.height * 0.5,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

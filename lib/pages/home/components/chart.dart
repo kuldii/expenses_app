@@ -5,15 +5,100 @@ class ChartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 5,
-      child: Center(
-        child: Text(
-          "CHART",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+      child: Row(
+        children: [
+          Column(
+            children: [
+              Text(
+                "\$99.99",
+              ),
+              Container(
+                height: 10,
+                width: 5,
+                color: Colors.amber,
+              ),
+              Text("M"),
+            ],
           ),
-          textAlign: TextAlign.center,
-        ),
+          Column(
+            children: [
+              Text(
+                "\$99.99",
+              ),
+              Container(
+                height: 10,
+                width: 5,
+                color: Colors.amber,
+              ),
+              Text("T"),
+            ],
+          ),
+          Column(
+            children: [
+              Text(
+                "\$99.99",
+              ),
+              Container(
+                height: 10,
+                width: 5,
+                color: Colors.amber,
+              ),
+              Text("W"),
+            ],
+          ),
+          Column(
+            children: [
+              Text(
+                "\$99.99",
+              ),
+              Container(
+                height: 10,
+                width: 5,
+                color: Colors.amber,
+              ),
+              Text("T"),
+            ],
+          ),
+          Column(
+            children: [
+              Text(
+                "\$99.99",
+              ),
+              Container(
+                height: 10,
+                width: 5,
+                color: Colors.amber,
+              ),
+              Text("F"),
+            ],
+          ),
+          Column(
+            children: [
+              Text(
+                "\$99.99",
+              ),
+              Container(
+                height: 10,
+                width: 5,
+                color: Colors.amber,
+              ),
+              Text("S"),
+            ],
+          ),
+          Column(
+            children: [
+              Text(
+                "\$99.99",
+              ),
+              Container(
+                height: 10,
+                width: 5,
+                color: Colors.amber,
+              ),
+              Text("S"),
+            ],
+          ),
+        ],
       ),
     );
   }

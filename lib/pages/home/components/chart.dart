@@ -1,112 +1,49 @@
+import 'package:expenses_app/models/transaction.dart';
+import 'package:expenses_app/pages/home/components/chartbar.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ChartWidget extends StatelessWidget {
+  final List<Transaction> recentTx;
+
+  ChartWidget(this.recentTx);
+
+  List<Map<String, Object>> get groupTx {
+    return List.generate(7, (index) {
+      final weekDay = DateTime.now().subtract(Duration(days: index));
+
+      double totalSum = 0.0;
+
+      for (var i = 0; i < recentTx.length; i++) {
+        if (recentTx[i].date.day == weekDay.day &&
+            recentTx[i].date.month == weekDay.month &&
+            recentTx[i].date.year == weekDay.year) {
+          totalSum += recentTx[i].amount;
+        }
+      }
+
+      // print(DateFormat.E().format(weekDay));
+      // print(totalSum);
+
+      return {
+        'day': DateFormat.E().format(weekDay),
+        'amount': totalSum.roundToDouble(),
+      };
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    print(groupTx);
     return Card(
       elevation: 5,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                "\$99.99",
-              ),
-              Container(
-                height: 100,
-                width: 20,
-                color: Colors.amber,
-              ),
-              Text("M"),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                "\$99.99",
-              ),
-              Container(
-                height: 100,
-                width: 20,
-                color: Colors.amber,
-              ),
-              Text("T"),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                "\$99.99",
-              ),
-              Container(
-                height: 100,
-                width: 20,
-                color: Colors.amber,
-              ),
-              Text("W"),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                "\$99.99",
-              ),
-              Container(
-                height: 100,
-                width: 20,
-                color: Colors.amber,
-              ),
-              Text("T"),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                "\$99.99",
-              ),
-              Container(
-                height: 100,
-                width: 20,
-                color: Colors.amber,
-              ),
-              Text("F"),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                "\$99.99",
-              ),
-              Container(
-                height: 100,
-                width: 20,
-                color: Colors.amber,
-              ),
-              Text("S"),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                "\$99.99",
-              ),
-              Container(
-                height: 100,
-                width: 20,
-                color: Colors.amber,
-              ),
-              Text("S"),
-            ],
-          ),
-        ],
+        children: groupTx.map(
+          (data) {
+            return ChartBar(data['day'], data['amount'], data['amount']);
+          },
+        ).toList(),
       ),
     );
   }

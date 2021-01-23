@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               Container(
                 height: 200,
-                child: ChartWidget(),
+                child: ChartWidget(_dataTransaction),
               ),
               ListTransactions(_dataTransaction, _deleteTx),
             ],

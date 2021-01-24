@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addTx;
@@ -84,7 +85,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 Text(
                   (_selectDate == null)
                       ? "No date chosen!"
-                      : _selectDate.toString(),
+                      : "Date picked : ${DateFormat.yMd().format(_selectDate)}",
                 ),
                 FlatButton(
                   onPressed: datePicker,

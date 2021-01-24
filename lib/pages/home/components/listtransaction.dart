@@ -51,64 +51,33 @@ class _ListTransactionsState extends State<ListTransactions> {
               child: ListView.builder(
                 itemBuilder: (ctx, idx) {
                   return Card(
-                    elevation: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // amount
-                          Container(
-                            margin: EdgeInsets.fromLTRB(20, 5, 0, 5),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 5,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColor,
-                              borderRadius: BorderRadius.circular(7),
-                            ),
+                    elevation: 5,
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        radius: 20,
+                        child: FittedBox(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "\$ " +
-                                  widget._dataTransaction[idx].amount
-                                      .toStringAsPrecision(5),
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                              ),
+                              "\$${widget._dataTransaction[idx].amount}",
                             ),
                           ),
-
-                          // detail
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                widget._dataTransaction[idx].title,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                DateFormat("LLL d, y H:m:s")
-                                    .format(widget._dataTransaction[idx].date),
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                          // delete
-                          IconButton(
-                            icon: Icon(
-                              Icons.delete,
-                            ),
-                            onPressed: () {
-                              widget.deleteTx(widget._dataTransaction[idx].id);
-                            },
-                          ),
-                        ],
+                        ),
+                      ),
+                      title: Text(
+                        "${widget._dataTransaction[idx].title}",
+                      ),
+                      subtitle: Text(
+                        "${DateFormat().format(widget._dataTransaction[idx].date)}",
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(
+                          Icons.delete,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        onPressed: () => widget.deleteTx(
+                          widget._dataTransaction[idx].id,
+                        ),
                       ),
                     ),
                   );

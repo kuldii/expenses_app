@@ -29,7 +29,7 @@ class ChartWidget extends StatelessWidget {
         'day': DateFormat.E().format(weekDay),
         'amount': totalSum,
       };
-    });
+    }).reversed.toList();
   }
 
   double get persentaseFunction {
@@ -48,22 +48,18 @@ class ChartWidget extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: groupTx
-              .map(
-                (data) {
-                  return Flexible(
-                    fit: FlexFit.tight,
-                    child: ChartBar(
-                      data['day'],
-                      data['amount'],
-                      (data['amount'] as double) / persentaseFunction,
-                    ),
-                  );
-                },
-              )
-              .toList()
-              .reversed
-              .toList(),
+          children: groupTx.map(
+            (data) {
+              return Flexible(
+                fit: FlexFit.tight,
+                child: ChartBar(
+                  data['day'],
+                  data['amount'],
+                  (data['amount'] as double) / persentaseFunction,
+                ),
+              );
+            },
+          ).toList(),
         ),
       ),
     );

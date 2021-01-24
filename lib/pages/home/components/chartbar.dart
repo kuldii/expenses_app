@@ -12,9 +12,7 @@ class ChartBar extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(
-          double.parse(amount.toString()).toString(),
-        ),
+        Text("$amount"),
         Container(
           height: 100,
           width: 20,

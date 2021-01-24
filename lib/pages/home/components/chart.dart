@@ -41,20 +41,24 @@ class ChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(groupTx);
+    // print(groupTx);
     return Card(
       elevation: 5,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: groupTx.map(
-          (data) {
-            return ChartBar(
-              data['day'],
-              data['amount'],
-              (data['amount'] as double) / persentaseFunction,
-            );
-          },
-        ).toList(),
+        children: groupTx
+            .map(
+              (data) {
+                return ChartBar(
+                  data['day'],
+                  data['amount'],
+                  (data['amount'] as double) / persentaseFunction,
+                );
+              },
+            )
+            .toList()
+            .reversed
+            .toList(),
       ),
     );
   }

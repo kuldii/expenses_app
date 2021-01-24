@@ -27,9 +27,16 @@ class ChartWidget extends StatelessWidget {
 
       return {
         'day': DateFormat.E().format(weekDay),
-        'amount': totalSum.roundToDouble(),
+        'amount': totalSum,
       };
     });
+  }
+
+  double get persentaseFunction {
+    return groupTx.fold(
+      0.0,
+      (previousValue, element) => (previousValue + element['amount']),
+    );
   }
 
   @override
@@ -41,7 +48,11 @@ class ChartWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: groupTx.map(
           (data) {
-            return ChartBar(data['day'], data['amount'], data['amount']);
+            return ChartBar(
+              data['day'],
+              data['amount'],
+              (data['amount'] as double) / persentaseFunction,
+            );
           },
         ).toList(),
       ),

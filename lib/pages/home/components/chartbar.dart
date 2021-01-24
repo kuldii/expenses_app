@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class ChartBar extends StatelessWidget {
@@ -12,31 +14,37 @@ class ChartBar extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text("$amount"),
-        Container(
-          height: 100,
-          width: 20,
-          child: Stack(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 1,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              FractionallySizedBox(
-                heightFactor: persentase.isNaN ? 0.0 : persentase,
-                child: Container(
+        Text(
+          "${amount.toStringAsFixed(0)}",
+          maxLines: 1,
+        ),
+        Transform.rotate(
+          angle: pi,
+          child: Container(
+            height: 100,
+            width: 20,
+            child: Stack(
+              children: [
+                Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-              ),
-            ],
+                FractionallySizedBox(
+                  heightFactor: persentase.isNaN ? 0.0 : persentase,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         Text(label),

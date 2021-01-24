@@ -71,7 +71,7 @@ class _ListTransactionsState extends State<ListTransactions> {
                             child: Text(
                               "\$ " +
                                   widget._dataTransaction[idx].amount
-                                      .toStringAsPrecision(4),
+                                      .toStringAsPrecision(5),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -91,7 +91,7 @@ class _ListTransactionsState extends State<ListTransactions> {
                                 ),
                               ),
                               Text(
-                                DateFormat()
+                                DateFormat("LLL d, y H:m:s")
                                     .format(widget._dataTransaction[idx].date),
                                 style: TextStyle(
                                   color: Colors.grey,

@@ -12,13 +12,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Transaction> _dataTransaction = [];
 
-  void _addNewTx(String titleTx, double amountTx) {
+  void _addNewTx(String titleTx, double amountTx, DateTime selectDate) {
     setState(() {
       _dataTransaction.add(Transaction(
         id: DateTime.now().toString(),
         title: titleTx,
         amount: amountTx,
-        date: DateTime.now(),
+        date: selectDate,
       ));
     });
   }

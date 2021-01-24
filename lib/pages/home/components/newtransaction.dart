@@ -11,8 +11,9 @@ class NewTransaction extends StatefulWidget {
 
 class _NewTransactionState extends State<NewTransaction> {
   final TextEditingController titleController = TextEditingController();
-
   final TextEditingController amountController = TextEditingController();
+
+  DateTime _selectDate;
 
   void addTransaction() {
     final enterTitle = titleController.text;
@@ -24,19 +25,37 @@ class _NewTransactionState extends State<NewTransaction> {
       if (enterAmount < 0.00) {
         return print("Nilai amount harus lebih dari 0 !");
       }
-      widget.addTx(enterTitle, enterAmount);
+      if (_selectDate == null) {
+        return print("Tidak terdapat date !");
+      }
+      widget.addTx(enterTitle, enterAmount, _selectDate);
       Navigator.of(context).pop();
     } else {
       return print("Tidak ada amount!");
     }
   }
 
+  void datePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2010),
+      lastDate: DateTime.now(),
+    ).then((value) {
+      if (value == null) {
+        return;
+      }
+      setState(() {
+        _selectDate = value;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+      child: ListView(
         children: [
           TextField(
             controller: titleController,
@@ -57,11 +76,39 @@ class _NewTransactionState extends State<NewTransaction> {
             textInputAction: TextInputAction.done,
             onSubmitted: (_) => addTransaction(),
           ),
-          FlatButton(
+          Container(
+            height: 100,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  (_selectDate == null)
+                      ? "No date chosen!"
+                      : _selectDate.toString(),
+                ),
+                FlatButton(
+                  onPressed: datePicker,
+                  child: Text(
+                    "Choose date",
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          RaisedButton(
             onPressed: addTransaction,
             child: Text(
               "Add Transaction",
-              style: TextStyle(color: Theme.of(context).primaryColor),
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+              ),
             ),
           ),
         ],

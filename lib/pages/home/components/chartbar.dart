@@ -14,9 +14,11 @@ class ChartBar extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(
-          "${amount.toStringAsFixed(0)}",
-          maxLines: 1,
+        FittedBox(
+          child: Text(
+            "${amount.toStringAsFixed(0)}",
+            maxLines: 1,
+          ),
         ),
         Transform.rotate(
           angle: pi,

@@ -44,23 +44,23 @@ class ChartWidget extends StatelessWidget {
     // print(groupTx);
     return Card(
       elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: groupTx.map(
-            (data) {
-              return Flexible(
-                fit: FlexFit.tight,
+      margin: EdgeInsets.all(8.0),
+      child: Row(
+        children: groupTx.map(
+          (data) {
+            return Flexible(
+              fit: FlexFit.tight,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: ChartBar(
                   data['day'],
                   data['amount'],
                   (data['amount'] as double) / persentaseFunction,
                 ),
-              );
-            },
-          ).toList(),
-        ),
+              ),
+            );
+          },
+        ).toList(),
       ),
     );
   }

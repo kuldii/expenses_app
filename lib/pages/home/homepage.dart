@@ -12,6 +12,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Transaction> _dataTransaction = [];
 
+  final myAppBar = AppBar(
+    title: Text(
+      "Expenses Apps",
+    ),
+    centerTitle: true,
+  );
+
   void _addNewTx(String titleTx, double amountTx, DateTime selectDate) {
     setState(() {
       _dataTransaction.add(Transaction(
@@ -32,25 +39,26 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Expenses Apps",
-        ),
-        centerTitle: true,
-      ),
+      appBar: myAppBar,
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                height: 200,
-                child: ChartWidget(_dataTransaction),
-              ),
-              ListTransactions(_dataTransaction, _deleteTx),
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      myAppBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.35,
+              child: ChartWidget(_dataTransaction),
+            ),
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      myAppBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.65,
+              child: ListTransactions(_dataTransaction, _deleteTx),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(

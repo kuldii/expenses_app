@@ -18,72 +18,74 @@ class _ListTransactionsState extends State<ListTransactions> {
     return (widget._dataTransaction.isEmpty)
         ? Card(
             elevation: 5,
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "There is no data.",
-                    style: TextStyle(
-                      fontSize: 26,
-                    ),
+            margin: EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "There is no data.",
+                  style: TextStyle(
+                    fontSize: 26,
                   ),
-                  SizedBox(
-                    height: 10,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  height: 150,
+                  child: Image.asset(
+                    "assets/images/nodata.png",
+                    fit: BoxFit.cover,
                   ),
-                  Container(
-                    height: 150,
-                    child: Image.asset(
-                      "assets/images/nodata.png",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           )
         : Card(
             elevation: 5,
-            child: Container(
-              padding: EdgeInsets.all(10),
-              height: MediaQuery.of(context).size.height * 0.5,
-              child: ListView.builder(
-                itemBuilder: (ctx, idx) {
-                  return Card(
-                    elevation: 5,
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 20,
-                        child: FittedBox(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "\$${widget._dataTransaction[idx].amount}",
-                            ),
+            margin: EdgeInsets.all(8.0),
+            child: ListView.builder(
+              itemBuilder: (ctx, idx) {
+                return Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        width: 1,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 20,
+                      child: FittedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "\$${widget._dataTransaction[idx].amount}",
                           ),
                         ),
                       ),
-                      title: Text(
-                        "${widget._dataTransaction[idx].title}",
+                    ),
+                    title: Text(
+                      "${widget._dataTransaction[idx].title}",
+                    ),
+                    subtitle: Text(
+                      "${DateFormat().format(widget._dataTransaction[idx].date)}",
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(
+                        Icons.delete,
+                        color: Theme.of(context).primaryColor,
                       ),
-                      subtitle: Text(
-                        "${DateFormat().format(widget._dataTransaction[idx].date)}",
-                      ),
-                      trailing: IconButton(
-                        icon: Icon(
-                          Icons.delete,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        onPressed: () => widget.deleteTx(
-                          widget._dataTransaction[idx].id,
-                        ),
+                      onPressed: () => widget.deleteTx(
+                        widget._dataTransaction[idx].id,
                       ),
                     ),
-                  );
-                },
-                itemCount: widget._dataTransaction.length,
-              ),
+                  ),
+                );
+              },
+              itemCount: widget._dataTransaction.length,
             ),
           );
   }
